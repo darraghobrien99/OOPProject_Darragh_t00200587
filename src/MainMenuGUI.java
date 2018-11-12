@@ -41,7 +41,7 @@ public class MainMenuGUI extends JFrame implements ActionListener {
         imageLabel.setVisible(true);
 
 
-        setSize(300,300);
+        setSize(400,400);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         setVisible(true);
@@ -61,20 +61,16 @@ public class MainMenuGUI extends JFrame implements ActionListener {
 
     private static void startQuiz() {
         JFrame frame = new JFrame("Play Quiz");
-        frame.setSize(400,400);
-        JTextArea textArea = new JTextArea(15, 50);
-        textArea.setFont(Font.getFont(Font.SANS_SERIF));
-        JPanel inputpanel = new JPanel();
-        inputpanel.setLayout(new FlowLayout());
-        JTextField input = new JTextField(15);
-        JButton button = new JButton("Enter");
+        frame.setSize(800,800);
+        JPanel questionPanel =  new JPanel();
+        questionPanel.setBounds(100,100,100,100);
+        questionPanel.setBackground(Color.GRAY);
+        frame.add(questionPanel);
+
         frame.setVisible(true);
-        JLabel questionLabel = new JLabel();
 
 
-        inputpanel.add(input);
-        inputpanel.add(button);
-        frame.add(inputpanel);
+
 
         //questionLabel.setText();
 
@@ -95,4 +91,3 @@ public class MainMenuGUI extends JFrame implements ActionListener {
     }
 
 }
-
