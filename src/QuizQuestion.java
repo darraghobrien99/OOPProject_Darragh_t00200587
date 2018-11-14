@@ -3,7 +3,7 @@ import java.util.List;
 
 public class QuizQuestion {
 
-    private List<Question> quizQuestions;
+    public List<Question> quizQuestions;
 
     public QuizQuestion(){
 
@@ -15,7 +15,7 @@ public class QuizQuestion {
         return quizQuestions;
     }
 
-    private List<Question> addQuestions(){
+    public List<Question> addQuestions(){
         List<Question> quizQuestion = new ArrayList<>();
 
         //Adding Quiz Questions
@@ -71,16 +71,9 @@ public class QuizQuestion {
         this.quizQuestions.add(quizQ);
 
 
-
-
-
          //System.out.println(quizQuestion.get(0));
 
-
-
-
 return quizQuestion;
-
 
 
     }
