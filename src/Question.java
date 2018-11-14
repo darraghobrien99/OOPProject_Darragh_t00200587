@@ -1,38 +1,43 @@
-import java.util.ArrayList;
-
 public class Question {
 
     private String question;
-    ArrayList<String> answerList= new ArrayList<String>();
+    private String[] answers;
+    private int correctAnswerIndex;
 
 
     public void setQuestion(String question) {
         this.question = question;
     }
 
-    public void setAnswerList(ArrayList<String> answerList) {
-        this.answerList = answerList;
+    public void setAnswers(String[] answers) {
+        this.answers = answers;
     }
+
+    public void setCorrectAnswerIndex(int correctAnswerIndex) {
+        this.correctAnswerIndex = correctAnswerIndex;
+    }
+
 
     public String getQuestion() {
         return question;
     }
 
-    public ArrayList<String> getAnswerList() {
-        return answerList;
+    public String[] getAnswers() {
+        return answers;
     }
 
+    public String getCorrectAnswerIndex() {
+        return answers[correctAnswerIndex];
+    }
 
-    public Question(String question, ArrayList<String> answerList){
+    public Question(String question, int correctAnswerIndex, String[] answers){
 
         this.question = question;
-        this.answerList = answerList;
+        this.answers = answers;
+        this.correctAnswerIndex = correctAnswerIndex;
 
     }
 
-    public Question() {
 
-        this("unknown");
-    }
 
 }
