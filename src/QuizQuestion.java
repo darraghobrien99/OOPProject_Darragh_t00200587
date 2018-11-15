@@ -5,9 +5,9 @@ public class QuizQuestion {
 
     public List<Question> quizQuestions;
 
-    public QuizQuestion(){
+    public void setQuizQuestions(List<Question> quizQuestions){
 
-        this.quizQuestions = addQuestions();
+        this.quizQuestions = this.quizQuestions;
     }
 
 
@@ -15,9 +15,8 @@ public class QuizQuestion {
         return quizQuestions;
     }
 
-    public List<Question> addQuestions(){
-        List<Question> quizQuestion = new ArrayList<>();
 
+    public List<Question> addQuestions(){
         //Adding Quiz Questions
 
         String question = "What is the most spoken language in the world?";
@@ -73,8 +72,10 @@ public class QuizQuestion {
 
          //System.out.println(quizQuestion.get(0));
 
-return quizQuestion;
+        return quizQuestions;
+
+}
 
 
     }
-}
+

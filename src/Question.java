@@ -38,6 +38,11 @@ public class Question {
 
     }
 
+    public String toString(){
+        return "Question: " + getQuestion() + "\nAnswers: " + getAnswers() +
+                "\nCorrect Answer Index: " + getCorrectAnswerIndex();
+    }
+
 
 
 }
