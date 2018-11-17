@@ -103,7 +103,7 @@ public class MainMenuGUI extends JFrame implements ActionListener {
            System.out.println(quizQuestion);
        }
 
-       //create buttons
+       //create buttons for answers
         buttons = new JButton[4];
 
        //assign answer to buttons
