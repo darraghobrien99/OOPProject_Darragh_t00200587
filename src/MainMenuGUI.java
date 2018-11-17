@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 public class MainMenuGUI extends JFrame implements ActionListener {
 
@@ -10,9 +11,14 @@ public class MainMenuGUI extends JFrame implements ActionListener {
     JButton exitButton;
     JPanel change;
     Container contain;
+    JLabel heading;
+    JLabel question;
+    JButton[] buttons;
 
 
     public MainMenuGUI() {
+
+        //JFrame
 
         super("10 Question Quiz");
         getContentPane().setLayout(null);
@@ -21,11 +27,22 @@ public class MainMenuGUI extends JFrame implements ActionListener {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setResizable(false);
 
+        //panel
+
         change = new JPanel(null);
         FlowLayout flow = new FlowLayout();
         getContentPane().setLayout(flow);
         change.setBackground(Color.GRAY);
         getContentPane().add(change);
+
+        // Heading
+
+        heading = new JLabel("Test Your Knowledge");
+        heading.setForeground(Color.BLUE);
+        heading.setFont(new Font("Tahoma", Font.BOLD, 20));
+        getContentPane().add(heading);
+
+        //play button
 
         playButton = new JButton("Play");
         playButton.setFocusPainted(false);
@@ -34,10 +51,22 @@ public class MainMenuGUI extends JFrame implements ActionListener {
         playButton.setFont(new Font("Tahoma", Font.BOLD, 12));
         getContentPane().add(playButton);
 
+        //score button
+
         scoresButton = new JButton("Leaderboard");
+        scoresButton .setFocusPainted(false);
+        scoresButton .setForeground(Color.WHITE);
+        scoresButton .setBackground(new Color(59, 89, 182));
+        scoresButton .setFont(new Font("Tahoma", Font.BOLD, 12));
         getContentPane().add(scoresButton);
 
+        //exit Button
+
         exitButton = new JButton("Exit");
+        exitButton.setFocusPainted(false);
+        exitButton.setForeground(Color.WHITE);
+        exitButton.setBackground(new Color(59, 89, 182));
+        exitButton.setFont(new Font("Tahoma", Font.BOLD, 12));
         getContentPane().add(exitButton);
 
         playButton.addActionListener(this);
@@ -68,64 +97,37 @@ public class MainMenuGUI extends JFrame implements ActionListener {
         change.setBounds(0,0,400,400);
         change.setBackground(Color.GRAY);
 
-        //button1
-        JButton answer1 = new JButton("Answer1");
-       answer1.setBounds(100,100,20,20);
-       answer1.setFocusPainted(false);
-       answer1.setForeground(Color.WHITE);
-       answer1.setBackground(new Color(59, 89, 182));
-       answer1.setFont(new Font("Tahoma", Font.BOLD, 12));
-       add(answer1, BorderLayout.SOUTH);
+       QuizQuestion quizQuestion = new QuizQuestion();
+
+       for (Question q : quizQuestion.getQuizQuestions()) {
+           System.out.println(quizQuestion);
+       }
+
+       //create buttons
+        buttons = new JButton[4];
+
+       //assign answer to buttons
+
+       //generate a random number to determine where correct goes
+       int index = (int)(Math.random() * 4);
+
+       //put the correct answer to the random button
+       buttons[index] = new JButton(correctAnswerIndex);
+
+       //fill other spot with answer
+      // for(int i=1; i<= .length; i++)
+       buttons[(index + i) %  answers.length] = new JButton(answers[i-1])
 
 
-
-        //button2
-       JButton answer2 = new JButton("Answer2");
-       answer2.setBounds(100,100,20,20);
-       answer2.setFocusPainted(false);
-       answer2.setForeground(Color.WHITE);
-       answer2.setBackground(new Color(59, 89, 182));
-       add(answer2, BorderLayout.SOUTH);
-       answer2.setFont(new Font("Tahoma", Font.BOLD, 12));
-       add(answer2, BorderLayout.SOUTH);
-
-
-       //button3
-       JButton answer3 = new JButton("Answer3");
-       answer3.setBounds(100,100,20,20);
-       answer3.setFocusPainted(false);
-       answer3.setForeground(Color.WHITE);
-       answer3.setBackground(new Color(59, 89, 182));
-       add(answer3, BorderLayout.SOUTH);
-       answer3.setFont(new Font("Tahoma", Font.BOLD, 12));
-       add(answer3, BorderLayout.SOUTH);
-
-
-
-       //button4
-       JButton answer4 = new JButton("Answer4");
-       answer4.setBounds(100,100,20,20);
-       answer4.setFocusPainted(false);
-       answer4.setForeground(Color.WHITE);
-       answer4.setBackground(new Color(59, 89, 182));
-       add(answer1, BorderLayout.SOUTH);
-       answer4.setFont(new Font("Tahoma", Font.BOLD, 12));
-       add(answer4, BorderLayout.SOUTH);
-       answer4.setFont(new Font("Sans-serif", Font.BOLD, 15));
 
        //adding buttons to JPanel
        contain.add(change);
-       change.add(answer1);
-       change.add(answer2);
-       change.add(answer3);
-       change.add(answer4);
+       change.add(buttons[4]);
+
        invalidate();
        repaint();
 
-       answer1.addActionListener(this);
-       answer2.addActionListener(this);
-       answer3.addActionListener(this);
-       answer4.addActionListener(this);
+
 
 
        }
