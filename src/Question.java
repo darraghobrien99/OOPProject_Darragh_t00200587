@@ -30,7 +30,7 @@ public class Question {
         return answers[correctAnswerIndex];
     }
 
-    public Question(String question, int correctAnswerIndex, String[] answers){
+    public Question(String question){
 
         this.question = question;
         this.answers = answers;

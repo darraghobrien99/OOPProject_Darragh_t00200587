@@ -13,9 +13,17 @@ public class QuizQuestion {
 
        try {
            FileReader file = new FileReader("quiz.txt");
-           BufferedReader reader = new BufferedReader(file);
-           Scanner scanner = new Scanner(reader);
+           //BufferedReader reader = new BufferedReader(file);
+           Scanner in = new Scanner(file);
 
+           while (in.hasNextLine()) {
+               String line = in.nextLine();
+
+               Question question = new Question(line);
+               quizQuestions.add(question);
+           }
+       }
+/*
            String line;
            String question = "";
            String[] answers = null;
@@ -48,7 +56,9 @@ public class QuizQuestion {
            reader.close();
            scanner.close();
 
-       } catch (IOException e){
+           */
+
+        catch (IOException e){
            e.printStackTrace();
 
 

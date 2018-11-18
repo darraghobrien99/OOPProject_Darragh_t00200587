@@ -103,6 +103,7 @@ public class MainMenuGUI extends JFrame implements ActionListener {
            System.out.println(quizQuestion);
        }
 
+       /*
        //create buttons for answers
         buttons = new JButton[4];
 
@@ -116,13 +117,16 @@ public class MainMenuGUI extends JFrame implements ActionListener {
 
        //fill other spot with answer
       // for(int i=1; i<= .length; i++)
-       buttons[(index + i) %  answers.length] = new JButton(answers[i-1])
+       buttons[(index + i) %  answers.length] = new JButton(answers[i-1]);
 
 
 
        //adding buttons to JPanel
+
+       */
        contain.add(change);
-       change.add(buttons[4]);
+
+      // change.add(buttons[4]);
 
        invalidate();
        repaint();
