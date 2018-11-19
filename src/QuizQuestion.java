@@ -10,11 +10,18 @@ public class QuizQuestion {
 
     private final String FILENAME = "quiz.txt";
 
+
     public QuizQuestion() {
 
 
         BufferedReader br = null;
         FileReader fr = null;
+        String question="";
+        String[] options = new String[4];
+        int correctAnswerIndex = 0;
+
+
+
 
         try {
 
@@ -22,16 +29,36 @@ public class QuizQuestion {
             fr = new FileReader(FILENAME);
             br = new BufferedReader(fr);
 
-            String sCurrentLine;
+            String sCurrentLine = br.readLine();
+            Question test = new Question(question,options,correctAnswerIndex);
 
-            while ((sCurrentLine = br.readLine()) != null) {
+            while(sCurrentLine != null){
+
+                //Find Question
+                if (sCurrentLine.contains("?")) {
+                    question = sCurrentLine;
+                }
+
+                else if(sCurrentLine.contains("."))
+                {
+                     options[4] = sCurrentLine;
+
+                }
+
+                else
+                    correctAnswerIndex = Integer.valueOf(sCurrentLine);
+
+
                 System.out.println(sCurrentLine);
-                parseQuestions(sCurrentLine);
+                sCurrentLine = br.readLine();
+
+
             }
+
 
         } catch (IOException e) {
 
-            e.printStackTrace();
+          System.out.println("Error" + e);
 
         } finally {
 
@@ -45,7 +72,7 @@ public class QuizQuestion {
 
             } catch (IOException ex) {
 
-                ex.printStackTrace();
+              System.out.println("Error" + ex);
 
             } //End of finally
 
@@ -53,46 +80,9 @@ public class QuizQuestion {
         }
     }//End of class
 
-    public void parseQuestions(String line) {
-
-        String question = "";
-        String[] options;
-        int correctAnswerIndex;
-
-
-
-        for (int i = 0; i < 6; i++) {
-
-            if (line.contains("?")) {
-                question = line;
-            }
-            else if (line.contains(".")) {
-
-                    options = new String[4];
-                    options[0] = line;
-                    options[1] = line;
-                    options[2] = line;
-                    options[3] = line;
-
-            }
-            else {
-                correctAnswerIndex = Integer.valueOf(line);
-            }
-
-            quizQuestions.add(question,options,correctAnswerIndex);
-
-        }//End of For loop
-
-    }//End of method
-
-
-
-    public List<Question> getQuizQuestions(){
+    public List<Question> getQuizQuestions() {
         return quizQuestions;
-    }
-
-}//End Class
-
+    }}
 
 
 

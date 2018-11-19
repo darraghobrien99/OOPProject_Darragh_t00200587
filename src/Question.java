@@ -30,13 +30,15 @@ public class Question {
         return answers[correctAnswerIndex];
     }
 
-    public Question(String question){
+    public Question(String question,String[] answers, int correctAnswerIndex){
 
         this.question = question;
         this.answers = answers;
         this.correctAnswerIndex = correctAnswerIndex;
 
     }
+
+
 
     public String toString(){
         return "Question: " + getQuestion() + "\nAnswers: " + getAnswers() +

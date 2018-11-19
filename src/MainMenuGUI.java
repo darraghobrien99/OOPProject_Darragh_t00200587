@@ -10,6 +10,7 @@ public class MainMenuGUI extends JFrame implements ActionListener {
     JButton playButton;
     JButton scoresButton;
     JButton exitButton;
+    JButton addQ;
     JPanel change;
     Container contain;
     JLabel heading;
@@ -52,7 +53,7 @@ public class MainMenuGUI extends JFrame implements ActionListener {
         playButton.setForeground(Color.WHITE);
         playButton.setBackground(new Color(59, 89, 182));
         playButton.setFont(new Font("Tahoma", Font.BOLD, 12));
-        playButton.setBounds(170,350,100,100);
+        playButton.setBounds(100,350,100,100);
         change.add(playButton);
 
         //score button
@@ -62,8 +63,18 @@ public class MainMenuGUI extends JFrame implements ActionListener {
         scoresButton .setForeground(Color.WHITE);
         scoresButton .setBackground(new Color(59, 89, 182));
         scoresButton .setFont(new Font("Tahoma", Font.BOLD, 12));
-        scoresButton.setBounds(270,350,200,100);
+        scoresButton.setBounds(170,350,200,100);
         change.add(scoresButton);
+
+        //add Question Button
+        addQ = new JButton("Add Question");
+        addQ.setFocusPainted(false);
+        addQ.setForeground(Color.WHITE);
+        addQ.setBackground(new Color(59, 89, 182));
+        addQ.setFont(new Font("Tahoma", Font.BOLD, 12));
+        addQ.setBounds(350,350,200,100);
+        change.add(addQ);
+
 
         //exit Button
 
@@ -72,11 +83,12 @@ public class MainMenuGUI extends JFrame implements ActionListener {
         exitButton.setForeground(Color.WHITE);
         exitButton.setBackground(new Color(59, 89, 182));
         exitButton.setFont(new Font("Tahoma", Font.BOLD, 12));
-        exitButton.setBounds(470,350,100,100);
+        exitButton.setBounds(550,350,100,100);
         change.add(exitButton);
 
         playButton.addActionListener(this);
         scoresButton.addActionListener(this);
+        addQ.addActionListener(this);
         exitButton.addActionListener(this);
 
         setVisible(true);
@@ -90,12 +102,19 @@ public class MainMenuGUI extends JFrame implements ActionListener {
             startQuiz();
         }
 
-        else if(e.getSource()==scoresButton)
+        else if(e.getSource()==scoresButton) {
             MainMenuGUI.showLeaderboard();
+        }
+
+        else if(e.getSource() == addQ){
+
+            //MainMenuGUI.addQuestion
+        }
+
         else
             MainMenuGUI.exitQuiz();
 
-    }
+    } //end of action Performed
 
    public void startQuiz() {
         change = new JPanel(null);
