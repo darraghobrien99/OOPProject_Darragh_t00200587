@@ -10,10 +10,6 @@ public class Quiz {
 
         QuizQuestion quizQuestion = new QuizQuestion();
 
-
-
-
-
     }
 }
 

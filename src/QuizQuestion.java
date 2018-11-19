@@ -26,6 +26,7 @@ public class QuizQuestion {
 
             while ((sCurrentLine = br.readLine()) != null) {
                 System.out.println(sCurrentLine);
+                parseQuestions(sCurrentLine);
             }
 
         } catch (IOException e) {
@@ -46,62 +47,58 @@ public class QuizQuestion {
 
                 ex.printStackTrace();
 
-            }
+            } //End of finally
+
 
         }
-    }
+    }//End of class
 
     public void parseQuestions(String line) {
 
         String question = "";
-        String[] answers = null;
-        int correctAnswerIndex = 0;
+        String[] options;
+        int correctAnswerIndex;
 
 
 
         for (int i = 0; i < 6; i++) {
+
             if (line.contains("?")) {
                 question = line;
-            } else if (line.contains(".")) {
-                answers = new String[4];
-                answers[i] = line;
-            } /*else if (Character.isDigit(line.indexOf(0))) {
-                    correctAnswerIndex = Integer.valueOf(line);
-                }*/ else {
+            }
+            else if (line.contains(".")) {
+
+                    options = new String[4];
+                    options[0] = line;
+                    options[1] = line;
+                    options[2] = line;
+                    options[3] = line;
+
+            }
+            else {
                 correctAnswerIndex = Integer.valueOf(line);
             }
-        }
+
+            quizQuestions.add(question,options,correctAnswerIndex);
+
+        }//End of For loop
+
+    }//End of method
+
+
+
+    public List<Question> getQuizQuestions(){
+        return quizQuestions;
     }
 
+}//End Class
 
 
 
 
 
-        //file.close();
-        //reader.close();
 
-
-
-
-        }//addQuestions();
-
-
-
-
-
-//End Class
-
-
-
-    /*
-
-
-      public List<Question> getQuizQuestions(){
-       return quizQuestions;
-    }
-
-
+/*
     public void addQuestions(){
 
        quizQuestions = new ArrayList<Question>();
@@ -109,8 +106,7 @@ public class QuizQuestion {
 
        }
 }
-
-
-
-
 */
+
+
+
