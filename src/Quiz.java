@@ -8,6 +8,8 @@ public class Quiz {
         mainGUI.setVisible(true);
         mainGUI.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
+        QuizQuestion quizQuestion = new QuizQuestion();
+
 
 
 

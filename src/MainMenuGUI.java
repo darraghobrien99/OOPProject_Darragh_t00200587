@@ -117,7 +117,7 @@ public class MainMenuGUI extends JFrame implements ActionListener {
 
             change.add(buttons[i]);
         }
-
+/*
         timer = new Timer(500, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -126,7 +126,7 @@ public class MainMenuGUI extends JFrame implements ActionListener {
         });
 
 
-
+*/
 
 /*
        QuizQuestion quizQuestion = new QuizQuestion();

@@ -1,4 +1,3 @@
-import sun.misc.IOUtils;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -9,62 +8,93 @@ public class QuizQuestion {
 
     public List<Question> quizQuestions;
 
-   public QuizQuestion(){
+    private final String FILENAME = "quiz.txt";
 
-       try {
-           FileReader file = new FileReader("quiz.txt");
-           //BufferedReader reader = new BufferedReader(file);
-           Scanner in = new Scanner(file);
-
-           while (in.hasNextLine()) {
-               String line = in.nextLine();
-
-               Question question = new Question(line);
-               quizQuestions.add(question);
-           }
-       }
-/*
-           String line;
-           String question = "";
-           String[] answers = null;
-           int correctAnswerIndex = 0;
-           int counter = 0;
-
-           do {
-               do {
-                   line = scanner.nextLine();
-
-                   if(scanner.hasNextLine()){
-                       question = scanner.nextLine();
-                   }
-
-                   if (line.contains("?")) {
-                       question = line;
-                   } else if (line.contains(".")) {
-                       answers = new String[3];
-                       answers[counter++] = line;
-                   } else if (Character.isDigit(line.indexOf(0))) {
-                       correctAnswerIndex = Integer.valueOf(line);
-                   }
-               } while (counter == 0);
-
-               quizQuestions.add(new Question(question, correctAnswerIndex, answers));
-               counter = 0;
-           } while (scanner.hasNext());
-
-           file.close();
-           reader.close();
-           scanner.close();
-
-           */
-
-        catch (IOException e){
-           e.printStackTrace();
+    public QuizQuestion() {
 
 
-       //addQuestions();
-   }
-       }
+        BufferedReader br = null;
+        FileReader fr = null;
+
+        try {
+
+            //br = new BufferedReader(new FileReader(FILENAME));
+            fr = new FileReader(FILENAME);
+            br = new BufferedReader(fr);
+
+            String sCurrentLine;
+
+            while ((sCurrentLine = br.readLine()) != null) {
+                System.out.println(sCurrentLine);
+            }
+
+        } catch (IOException e) {
+
+            e.printStackTrace();
+
+        } finally {
+
+            try {
+
+                if (br != null)
+                    br.close();
+
+                if (fr != null)
+                    fr.close();
+
+            } catch (IOException ex) {
+
+                ex.printStackTrace();
+
+            }
+
+        }
+    }
+
+    public void parseQuestions(String line) {
+
+        String question = "";
+        String[] answers = null;
+        int correctAnswerIndex = 0;
+
+
+
+        for (int i = 0; i < 6; i++) {
+            if (line.contains("?")) {
+                question = line;
+            } else if (line.contains(".")) {
+                answers = new String[4];
+                answers[i] = line;
+            } /*else if (Character.isDigit(line.indexOf(0))) {
+                    correctAnswerIndex = Integer.valueOf(line);
+                }*/ else {
+                correctAnswerIndex = Integer.valueOf(line);
+            }
+        }
+    }
+
+
+
+
+
+
+        //file.close();
+        //reader.close();
+
+
+
+
+        }//addQuestions();
+
+
+
+
+
+//End Class
+
+
+
+    /*
 
 
       public List<Question> getQuizQuestions(){
@@ -83,3 +113,4 @@ public class QuizQuestion {
 
 
 
+*/
