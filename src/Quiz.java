@@ -23,22 +23,13 @@ public class Quiz {
         return (ArrayList<Question>) quizQuestions;
     }
 
+//AddQuizQuestion Method
+
     public static void addQuizQuestion(){
 
         String question;
         String[] answers = new String[4];
         int CorrectAnswer;
-        int number;
-        String numAsString;
-
-        //numAsString = JOptionPane.showInputDialog("How many questions would you like to store:");
-
-        //number = Integer.parseInt(numAsString);
-
-        //Question[] newQuestions = new Question[number];
-
-        //for(int i=0; i<newQuestions.length; i++)
-        //{
 
             Question addQ = new Question();
 
@@ -47,22 +38,13 @@ public class Quiz {
             for(int j=0; j < answers.length;j++) {
 
             answers[j] = JOptionPane.showInputDialog("Enter answer:");
-            //j++;
             addQ.setAnswers(new String[]{answers[j]});
             }
 
             addQ.setCorrectAnswerIndex(Integer.parseInt(JOptionPane.showInputDialog("Enter correct Answer Index:")));
 
-            //newQuestions[i] = addQ;
-
         quizQuestions.add(addQ);
-
-
-
-        //}
-
-
-    }
-}
+    }//End Method
+}//End Class
 
 

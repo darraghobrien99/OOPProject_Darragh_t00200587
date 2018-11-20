@@ -38,14 +38,11 @@ public class QuizQuestion {
             quizQuestions.add(test);
 
             //writeQuestionToFile();
-
-            /*
-
             try (Writer writer = new BufferedWriter(new OutputStreamWriter(
                     new FileOutputStream("quiz.txt"), "utf-8"))) {
                 writer.write(String.valueOf(quizQuestions));
             }
-            */
+
 
             //reading file
             while(sc.hasNextLine()){
@@ -55,7 +52,6 @@ public class QuizQuestion {
                     if (sCurrentLine.contains("?")) {
                         question = sCurrentLine;
                         test.setQuestion(question);
-
                     }
 
 
@@ -69,7 +65,6 @@ public class QuizQuestion {
                     }
 
                     //Find correct Answer index
-
                     else
                         correctAnswerIndex = Integer.valueOf(sCurrentLine);
                     test.setCorrectAnswerIndex(correctAnswerIndex);
@@ -90,9 +85,6 @@ public class QuizQuestion {
 
             try {
 
-                //if (fr != null)
-                    //fr.close();
-
                 if (sc != null)
                     sc.close();
 
@@ -104,27 +96,13 @@ public class QuizQuestion {
 
 
         } //End of finally
+
     }//End of QuizQuestion
 
-    public List<Question> getQuizQuestions() {
-        return quizQuestions;
-    }//End get
 
 }//End class
 
 
-
-
-
-/*
-    public void addQuestions(){
-
-       quizQuestions = new ArrayList<Question>();
-
-
-       }
-}
-*/
 
 
 
