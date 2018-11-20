@@ -26,8 +26,8 @@ public class Question {
         return answers;
     }
 
-    public String getCorrectAnswerIndex() {
-        return answers[correctAnswerIndex];
+    public int getCorrectAnswerIndex() {
+        return correctAnswerIndex;
     }
 
     public Question(String question,String[] answers, int correctAnswerIndex){

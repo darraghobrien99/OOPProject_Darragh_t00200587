@@ -31,29 +31,40 @@ public class QuizQuestion {
 
             String sCurrentLine = br.readLine();
             Question test = new Question(question,options,correctAnswerIndex);
+            quizQuestions.add(test);
 
             while(sCurrentLine != null){
 
-                //Find Question
-                if (sCurrentLine.contains("?")) {
-                    question = sCurrentLine;
-                }
 
-                else if(sCurrentLine.contains("."))
-                {
-                     options[4] = sCurrentLine;
+                    //Find Question
+                    if (sCurrentLine.contains("?")) {
+                        question = sCurrentLine;
+                        test.setQuestion(question);
 
-                }
-
-                else
-                    correctAnswerIndex = Integer.valueOf(sCurrentLine);
+                    }
 
 
-                System.out.println(sCurrentLine);
-                sCurrentLine = br.readLine();
+                    //Find Answers
+                    else if (sCurrentLine.contains(".")) {
+                        options[0] = sCurrentLine;
+                        options[1] = sCurrentLine;
+                        options[2] = sCurrentLine;
+                        options[3] = sCurrentLine;
+                        test.setAnswers(options);
+                    }
+
+                    //Find correct Answer index
+
+                    else
+                        correctAnswerIndex = Integer.valueOf(sCurrentLine);
+                    test.setCorrectAnswerIndex(correctAnswerIndex);
 
 
-            }
+                    System.out.println(sCurrentLine);
+                    sCurrentLine = br.readLine();
+
+
+            }//End of while
 
 
         } catch (IOException e) {
@@ -74,15 +85,17 @@ public class QuizQuestion {
 
               System.out.println("Error" + ex);
 
-            } //End of finally
+            }  //End of Catch
 
 
-        }
-    }//End of class
+        } //End of finally
+    }//End of QuizQuestion
 
     public List<Question> getQuizQuestions() {
         return quizQuestions;
-    }}
+    }//End get
+
+}//End class
 
 
 
