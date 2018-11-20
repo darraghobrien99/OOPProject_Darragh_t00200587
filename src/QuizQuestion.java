@@ -1,5 +1,7 @@
 
 import java.io.*;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -14,8 +16,8 @@ public class QuizQuestion {
     public QuizQuestion() {
 
 
-        BufferedReader br = null;
-        FileReader fr = null;
+        Scanner sc = null;
+        File fr = null;
         String question="";
         String[] options = new String[4];
         int correctAnswerIndex = 0;
@@ -23,19 +25,32 @@ public class QuizQuestion {
 
 
 
-        try {
+        try { //http://javatutorialhq.com/java/util/scanner-class-tutorial/hasnextline-method-example/
 
             //br = new BufferedReader(new FileReader(FILENAME));
-            fr = new FileReader(FILENAME);
-            br = new BufferedReader(fr);
+            fr = new File(FILENAME);
+           // br = new BufferedReader(fr);
+             sc = new Scanner(fr);
 
-            String sCurrentLine = br.readLine();
+             quizQuestions = Quiz.getQuizQuestions();    //need to access arraylist of questions from some Quiz object
+
             Question test = new Question(question,options,correctAnswerIndex);
             quizQuestions.add(test);
 
-            while(sCurrentLine != null){
+            //writeQuestionToFile();
 
+            /*
 
+            try (Writer writer = new BufferedWriter(new OutputStreamWriter(
+                    new FileOutputStream("quiz.txt"), "utf-8"))) {
+                writer.write(String.valueOf(quizQuestions));
+            }
+            */
+
+            //reading file
+            while(sc.hasNextLine()){
+
+                String sCurrentLine = sc.nextLine();
                     //Find Question
                     if (sCurrentLine.contains("?")) {
                         question = sCurrentLine;
@@ -61,7 +76,7 @@ public class QuizQuestion {
 
 
                     System.out.println(sCurrentLine);
-                    sCurrentLine = br.readLine();
+                    //sCurrentLine = br.readLine();
 
 
             }//End of while
@@ -75,13 +90,13 @@ public class QuizQuestion {
 
             try {
 
-                if (br != null)
-                    br.close();
+                //if (fr != null)
+                    //fr.close();
 
-                if (fr != null)
-                    fr.close();
+                if (sc != null)
+                    sc.close();
 
-            } catch (IOException ex) {
+            } catch (Exception ex) {
 
               System.out.println("Error" + ex);
 
