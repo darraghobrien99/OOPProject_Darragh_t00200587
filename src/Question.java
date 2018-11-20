@@ -38,6 +38,12 @@ public class Question {
 
     }
 
+    public Question(){
+        this.question = "unknown";
+        this.answers = null;
+        this.correctAnswerIndex = 0;
+    }
+
 
 
     public String toString(){
