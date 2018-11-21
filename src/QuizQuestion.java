@@ -48,14 +48,13 @@ public class QuizQuestion {
             test.toString();
            // quizQuestions.add(test);
 
-
-
-
-
             //reading file
 
+            int counter=0;
             while(sc.hasNextLine()){
 
+                counter++;
+                System.out.println(counter);
                 String sCurrentLine = sc.nextLine();
 
                 //Find Question
@@ -75,32 +74,33 @@ public class QuizQuestion {
 
                 else if (sCurrentLine.contains(".")) {
 
-                    options[0] = sCurrentLine;
+                    for(int i=0; i<options.length;i++){
 
-                    options[1] = sCurrentLine;
-
-                    options[2] = sCurrentLine;
-
-                    options[3] = sCurrentLine;
+                        options[i] = sCurrentLine;
+                    }
 
                     test.setAnswers(options);
 
-                  for(int i=0;i<options.length;i++){
-                  }
+                    //System.out.println(test.getAnswers());
 
                 }
                 //Find correct Answer index
-                else
+                else if (Character.isDigit(sCurrentLine.charAt(0)))
+
 
                     correctAnswerIndex = Integer.valueOf(sCurrentLine);
 
                     test.setCorrectAnswerIndex(correctAnswerIndex);
 
+                    System.out.println(correctAnswerIndex);
 
-                  // System.out.println(sCurrentLine);
+
+                   //System.out.println(sCurrentLine);
 
                     //sCurrentLine = br.readLine();
                 }
+
+            //sc.close();
 
             writeToFile();
 
@@ -110,9 +110,10 @@ public class QuizQuestion {
 
             ex.printStackTrace();
 
-            //End of catch
 
-        }  finally {
+
+        } //End of catch
+         finally {
 
             try {
 
@@ -156,7 +157,8 @@ public class QuizQuestion {
             e.printStackTrace();
         }
 
-    }
+    }//End Method
+
 
 }//End class
 

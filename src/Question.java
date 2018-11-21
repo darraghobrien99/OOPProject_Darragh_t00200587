@@ -34,19 +34,18 @@ public class Question {
 
     }
 
-
-
-
-
     public String getQuestion() {
 
         return question;
 
     }
 
-
-
     public String[] getAnswers() {
+
+        for(int i=0; i<answers.length;i++) {
+
+            return new String[]{answers[i]};
+        }
 
         return answers;
 
