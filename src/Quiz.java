@@ -4,25 +4,20 @@ import java.util.List;
 
 public class Quiz {
 
-     public static ArrayList<Question> quizQuestions;
+     public static ArrayList<Question> quizQuestions = new ArrayList<>();
     //public List<Quiz> allQuizzes;
 
     public static void main(String args[]) {
 
-       /* MainMenuGUI mainGUI = new MainMenuGUI();
+        MainMenuGUI mainGUI = new MainMenuGUI();
         mainGUI.setVisible(true);
-        mainGUI.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); */
+        mainGUI.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        Question quizQuestion = new Question();
-        //System.out.println(quizQuestion.toString());
-        //String[] answers = {"Wed","Tes","Thur","Fri"};
-        //Question q2 = new Question("What day is today",answers,0);
+        QuizQuestion question1 = new QuizQuestion();
 
-       // quizQuestions.add(quizQuestion);
-       // quizQuestions.add(q2);
-
-
-        QuizQuestion questions = new QuizQuestion();
+        for(int i =0; i < quizQuestions.size(); i++){
+            System.out.println((quizQuestions.get(i)).toString());
+        }
 
     }
 

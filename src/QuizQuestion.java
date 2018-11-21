@@ -1,5 +1,4 @@
 
-
 import java.io.*;
 
 import java.nio.file.Paths;
@@ -11,16 +10,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import java.util.Scanner;
-
-
-
 public class QuizQuestion {
 
-
-
     public ArrayList<Question> quizQuestions = new ArrayList<>();
-
-
     private final String FILENAME = "quiz.txt";
 
     public QuizQuestion() {
@@ -45,16 +37,12 @@ public class QuizQuestion {
             quizQuestions = Quiz.getQuizQuestions();    //need to access arraylist of questions from some Quiz object
 
             Question test = new Question(question,options,correctAnswerIndex);
-            test.toString();
-           // quizQuestions.add(test);
+            quizQuestions.add(test);
+
 
             //reading file
-
-            int counter=0;
             while(sc.hasNextLine()){
 
-                counter++;
-                System.out.println(counter);
                 String sCurrentLine = sc.nextLine();
 
                 //Find Question
@@ -65,7 +53,7 @@ public class QuizQuestion {
 
                     test.setQuestion(question);
 
-                  //  System.out.println(test.getQuestion());
+                    //System.out.println(test.getQuestion());
 
                 }
 
@@ -81,29 +69,23 @@ public class QuizQuestion {
 
                     test.setAnswers(options);
 
-                    //System.out.println(test.getAnswers());
+                   // System.out.println(test.getAnswers());
 
                 }
                 //Find correct Answer index
                 else if (Character.isDigit(sCurrentLine.charAt(0)))
 
 
-                    correctAnswerIndex = Integer.valueOf(sCurrentLine);
+                    correctAnswerIndex = Integer.parseInt(sCurrentLine);
 
-                    test.setCorrectAnswerIndex(correctAnswerIndex);
-
-                    System.out.println(correctAnswerIndex);
-
+                   // System.out.println(test.getCorrectAnswerIndex());
 
                    //System.out.println(sCurrentLine);
 
-                    //sCurrentLine = br.readLine();
+
                 }
 
-            //sc.close();
-
-            writeToFile();
-
+            //writeToFile();
             }
 
             catch (IOException ex) {
@@ -116,26 +98,14 @@ public class QuizQuestion {
          finally {
 
             try {
-
-
-
                 if (sc != null)
 
                     sc.close();
 
-
-
             } catch (Exception ex) {
-
-
-
                 System.out.println("Error" + ex);
 
-
-
             }  //End of Catch
-
-
         } //End of finally
 
     }//End of QuizQuestion
