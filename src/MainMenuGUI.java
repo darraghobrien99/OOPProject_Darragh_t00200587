@@ -127,21 +127,25 @@ public class MainMenuGUI extends JFrame implements ActionListener {
         change.setBounds(0,0,800,800);
         change.setBackground(Color.GRAY);
 
-        buttons = new JButton[4];
+
+        ArrayList<Question> quizquestions = (ArrayList<Question>) Quiz.getQuizQuestions();
+
+       ArrayList<JLabel> questionLabels = new ArrayList<JLabel>(); //https://stackoverflow.com/questions/23369867/display-arraylist-items-as-separate-jlabels
 
 
-        for(int i=0; i< buttons.length;i++){
+       JLabel holder;
 
-            buttons[i] = new JButton(" ");
-            buttons[i].setBounds(0,0,200,100);
-            buttons[i].setFocusPainted(false);
-            buttons[i].setForeground(Color.WHITE);
-            buttons[i].setBackground(new Color(59, 89, 182));
-            buttons[i].setFont(new Font("Tahoma", Font.BOLD, 12));
-            buttons[i].setBounds(470,350,100,100);
+       for (int i = 0; i < quizquestions.size(); i++){
+           holder = new JLabel();
+           holder.setText(quizquestions.toString());
+           questionLabels.add(holder); //adds holder to the ArrayList of JLabels
+           questionLabels.get(i).setBounds(0,100,800,100);
+           questionLabels.get(i).setForeground(Color.WHITE);
+           change.add(questionLabels.get(i));
+       }
 
-            change.add(buttons[i]);
-        }
+
+
 /*
         timer = new Timer(500, new ActionListener() {
             @Override

@@ -1,6 +1,8 @@
 import javax.swing.*;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 
 public class Quiz {
 
@@ -14,6 +16,9 @@ public class Quiz {
         mainGUI.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         QuizQuestion question1 = new QuizQuestion();
+
+
+
 
         for(int i =0; i < quizQuestions.size(); i++){
             System.out.println((quizQuestions.get(i)).toString());
@@ -38,19 +43,11 @@ public class Quiz {
 
         int correctAnswer;
 
-
-
         Question addQ = new Question();
-
-
 
         addQ.setQuestion(JOptionPane.showInputDialog("Enter Question:"));
 
-
-
         for(int j=0; j < answers.length;j++) {
-
-
 
             answers[j] = JOptionPane.showInputDialog("Enter answer:");
 
@@ -58,15 +55,15 @@ public class Quiz {
 
         }
 
-
-
         addQ.setCorrectAnswerIndex(Integer.parseInt(JOptionPane.showInputDialog("Enter correct Answer Index:")));
-
-
-
         quizQuestions.add(addQ);
 
     }//End Method
+
+    public void randomQuestion() {
+        Collections.shuffle(quizQuestions);
+    }//End Method
+
 }//End Class
 
 

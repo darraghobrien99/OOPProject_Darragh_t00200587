@@ -66,17 +66,8 @@ public class Question {
 
 
         this.question = question;
-
-        for (int i=0; i < answers.length; i++) {
-            this.answers = answers;
-
-        }
-
-
-
+        this.answers = answers;
         this.correctAnswerIndex = correctAnswerIndex;
-
-
 
     }
 
@@ -97,9 +88,11 @@ public class Question {
 
     public String toString(){
 //print out Array of correctAnswers
-        return "Question: " + getQuestion() + "\nAnswers: " + getAnswers() +
 
-                "\nCorrect Answer Index: " + getCorrectAnswerIndex();
+            return "Question: " + getQuestion() + "\nAnswers: " + getAnswers() +
+
+                    "\nCorrect Answer Index: " + getCorrectAnswerIndex();
+        }
 
     }
 
@@ -109,4 +102,3 @@ public class Question {
 
 
 
-}

@@ -15,6 +15,8 @@ public class QuizQuestion {
     public ArrayList<Question> quizQuestions = new ArrayList<>();
     private final String FILENAME = "quiz.txt";
 
+
+
     public QuizQuestion() {
 
 
@@ -34,9 +36,9 @@ public class QuizQuestion {
             fr = new File(FILENAME);
             sc = new Scanner(fr);
 
-            quizQuestions = Quiz.getQuizQuestions();    //need to access arraylist of questions from some Quiz object
+            quizQuestions = Quiz.getQuizQuestions();    //need to access array list of questions from some Quiz object
 
-            Question test = new Question(question,options,correctAnswerIndex);
+            Question test = new Question();
             quizQuestions.add(test);
 
 
@@ -53,7 +55,7 @@ public class QuizQuestion {
 
                     test.setQuestion(question);
 
-                    //System.out.println(test.getQuestion());
+                   // System.out.println(test.getQuestion());
 
                 }
 
@@ -69,16 +71,14 @@ public class QuizQuestion {
 
                     test.setAnswers(options);
 
-                   // System.out.println(test.getAnswers());
+                    System.out.println(test.getAnswers());
 
                 }
                 //Find correct Answer index
-                else if (Character.isDigit(sCurrentLine.charAt(0)))
-
-
+                else
                     correctAnswerIndex = Integer.parseInt(sCurrentLine);
 
-                   // System.out.println(test.getCorrectAnswerIndex());
+                    //System.out.println(test.getCorrectAnswerIndex());
 
                    //System.out.println(sCurrentLine);
 
