@@ -23,10 +23,10 @@ Floodplain.
 River Mouth.
 0
 How many matches did Muhammad Ali lose in his career?
-0.
-1.
-2.
-3.
+zero.
+one.
+two.
+three.
 1
 In what Country is the interlagos F1-circuit?
 Italy.
@@ -46,7 +46,7 @@ Goliath Bird Eater.
 Colombian Giant Tarantula.
 Black Widow.
 1.
-What did A.E. Frick invent in 1887, which are now worn by thousands if not millions of people?
+What did A.E. Frick invent in eighteen eighty seven, which are now worn by thousands if not millions of people?
 Baseball caps.
 Glasses.
 Contact Lenses.
@@ -76,11 +76,11 @@ Peter Pan.
 Snow White.
 Sleeping Beauty.
 1
-If it is 12 midday in Dublin, what time is it in Tokyo?
-9pm.
-12pm.
-3am.
-6am.
+If it is twelve midday in Dublin, what time is it in Tokyo?
+nine pm.
+twelve pm.
+three pm.
+six am.
 0
 Astigmatism is a condition affecting which part of the body?
 Ears.
@@ -106,12 +106,6 @@ A flower.
 An Animal.
 A food.
 0
-When did the French Revolution End?
-1774.
-1781.
-1789.
-1799.
-3
 Which ocean surrounds the maldives?
 Atlantic.
 Indian.
@@ -125,13 +119,11 @@ James Madison.
 Abraham Lincoln.
 2
 In Bingo, what number is referred to as ‘Doctor’s Orders’?
-4.
-9.
-13.
-24.
+four.
+nine.
+thirteen.
+twenty-four.
 1
-
-
 
 
 

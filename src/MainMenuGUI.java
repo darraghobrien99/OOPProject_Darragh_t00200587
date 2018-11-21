@@ -22,7 +22,7 @@ public class MainMenuGUI extends JFrame implements ActionListener {
     Timer timer = null;
     int seconds = 60;
     private static String username = "admin";
-    private static String password = "masterofthequiz";
+    private static String password = "master";
 
 
     public MainMenuGUI() {
