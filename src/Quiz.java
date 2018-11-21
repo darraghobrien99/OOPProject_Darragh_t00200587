@@ -28,7 +28,7 @@ public class Quiz {
 
     public static ArrayList<Question> getQuizQuestions() {
 
-        return (ArrayList<Question>) quizQuestions;
+        return quizQuestions;
     }
 
 //AddQuizQuestion Method

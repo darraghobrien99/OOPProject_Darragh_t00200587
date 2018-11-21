@@ -39,35 +39,19 @@ public class QuizQuestion {
 
         try { //http://javatutorialhq.com/java/util/scanner-class-tutorial/hasnextline-method-example/
 
-            //br = new BufferedReader(new FileReader(FILENAME));
-
             fr = new File(FILENAME);
-
-            // br = new BufferedReader(fr);
-
             sc = new Scanner(fr);
-
 
             quizQuestions = Quiz.getQuizQuestions();    //need to access arraylist of questions from some Quiz object
 
-
             Question test = new Question(question,options,correctAnswerIndex);
             test.toString();
-
            // quizQuestions.add(test);
 
-/*
-            //writeQuestionToFile();
 
-            try (Writer writer = new BufferedWriter(new OutputStreamWriter(
 
-                    new FileOutputStream("quiz.txt"), "utf-8"))) {
 
-                writer.write(String.valueOf(quizQuestions));
 
-            }
-
-*/
             //reading file
 
             while(sc.hasNextLine()){
@@ -82,7 +66,7 @@ public class QuizQuestion {
 
                     test.setQuestion(question);
 
-                    //System.out.println(test.getQuestion());
+                  //  System.out.println(test.getQuestion());
 
                 }
 
@@ -101,39 +85,34 @@ public class QuizQuestion {
 
                     test.setAnswers(options);
 
+                  for(int i=0;i<options.length;i++){
+                  }
+
                 }
-
                 //Find correct Answer index
-
-                else if(sCurrentLine.contains(int)){
+                else
 
                     correctAnswerIndex = Integer.valueOf(sCurrentLine);
 
                     test.setCorrectAnswerIndex(correctAnswerIndex);
 
 
-                    System.out.println(sCurrentLine);
+                  // System.out.println(sCurrentLine);
 
                     //sCurrentLine = br.readLine();
                 }
 
-            }//End of while
+            writeToFile();
 
+            }
 
+            catch (IOException ex) {
 
+            ex.printStackTrace();
 
+            //End of catch
 
-        } catch (IOException e) {
-
-
-
-            System.out.println("Error" + e);
-
-
-
-        } finally {
-
-
+        }  finally {
 
             try {
 
@@ -156,18 +135,28 @@ public class QuizQuestion {
             }  //End of Catch
 
 
-
-
-
         } //End of finally
-
-
 
     }//End of QuizQuestion
 
 
 
+    public void writeToFile() {
+        try (Writer writer = new BufferedWriter(new OutputStreamWriter(
 
+                new FileOutputStream("quiz.txt"), "utf-8"))) {
+
+            writer.write(String.valueOf(quizQuestions));
+
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
 
 }//End class
 

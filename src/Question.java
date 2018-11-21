@@ -68,7 +68,12 @@ public class Question {
 
         this.question = question;
 
-        this.answers = answers;
+        for (int i=0; i < answers.length; i++) {
+            this.answers = answers;
+
+        }
+
+
 
         this.correctAnswerIndex = correctAnswerIndex;
 
