@@ -4,27 +4,30 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
-public class Quiz {
+public class QuizApp {
 
-     public static ArrayList<Question> quizQuestions = new ArrayList<>();
+    public static ArrayList<Question> quizQuestions = new ArrayList<>(); //JB Advice - may not need this at all here
     //public List<Quiz> allQuizzes;
 
     public static void main(String args[]) {
+
 
         MainMenuGUI mainGUI = new MainMenuGUI();
         mainGUI.setVisible(true);
         mainGUI.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        QuizQuestion question1 = new QuizQuestion();
+        //QuizQuestion question1 = new QuizQuestion();
 
 
-
+/*
 
         for(int i =0; i < quizQuestions.size(); i++){
-            System.out.println((quizQuestions.get(i)).toString());
-        }
+           System.out.println((quizQuestions.get(i)).toString());
+        }*/
 
     }
+
+
 
     public static ArrayList<Question> getQuizQuestions() {
 
@@ -32,6 +35,8 @@ public class Quiz {
     }
 
 //AddQuizQuestion Method
+
+
 
     public static void addQuizQuestion(){
 
@@ -60,10 +65,10 @@ public class Quiz {
 
     }//End Method
 
+
+
     public void randomQuestion() {
         Collections.shuffle(quizQuestions);
     }//End Method
 
 }//End Class
-
-

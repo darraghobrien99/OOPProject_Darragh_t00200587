@@ -122,27 +122,47 @@ public class MainMenuGUI extends JFrame implements ActionListener {
 
     } //end of action Performed
 
-   public void startQuiz() {
+    public void startQuiz() {
         change = new JPanel(null);
         change.setBounds(0,0,800,800);
         change.setBackground(Color.GRAY);
 
 
-        ArrayList<Question> quizquestions = (ArrayList<Question>) Quiz.getQuizQuestions();
+        //ArrayList<Question> quizquestions = (ArrayList<Question>) Quiz.getQuizQuestions();
 
-       ArrayList<JLabel> questionLabels = new ArrayList<JLabel>(); //https://stackoverflow.com/questions/23369867/display-arraylist-items-as-separate-jlabels
+        //Added by JB - the call to the read() here will read the questions, answers and correct index from the file on disk
+        //and put them into an arraylist of Question objects. Then the contents of this arraylist is just displayed to the screen
+        //via a loop for test purposes
+
+        ArrayList<Question> quizQuestions = QuestionFile.read();
 
 
-       JLabel holder;
+        for(Question q : quizQuestions)
+            System.out.println(q);
 
-       for (int i = 0; i < quizquestions.size(); i++){
+        QuestionFile.write(quizQuestions); //JB added test code to try to write arraylist of Question objects to file
+
+        quizQuestions = QuestionFile.read();
+
+        for(Question q : quizQuestions)
+            System.out.println(q);
+
+
+
+
+        ArrayList<JLabel> questionLabels = new ArrayList<JLabel>(); //https://stackoverflow.com/questions/23369867/display-arraylist-items-as-separate-jlabels
+
+
+        JLabel holder;
+
+       /*for (int i = 0; i < quizquestions.size(); i++){
            holder = new JLabel();
            holder.setText(quizquestions.toString());
            questionLabels.add(holder); //adds holder to the ArrayList of JLabels
            questionLabels.get(i).setBounds(0,100,800,100);
            questionLabels.get(i).setForeground(Color.WHITE);
            change.add(questionLabels.get(i));
-       }
+       }*/
 
 
 
@@ -185,17 +205,17 @@ public class MainMenuGUI extends JFrame implements ActionListener {
        //adding buttons to JPanel
 
        */
-       contain.add(change);
+        contain.add(change);
 
-      // change.add(buttons[4]);
+        // change.add(buttons[4]);
 
-       change.invalidate();
-       change.repaint();
-
-
+        change.invalidate();
+        change.repaint();
 
 
-       }
+
+
+    }
 
 
     private static void showLeaderboard(){
@@ -225,34 +245,34 @@ public class MainMenuGUI extends JFrame implements ActionListener {
         JTextField admin = new JTextField(10);
         admin.setBounds(350,85,150,25);
 
-       change.add(usernameLabel);
-       change.add(admin);
+        change.add(usernameLabel);
+        change.add(admin);
 
-       passwordLabel = new JLabel("Enter Password:");
-       passwordLabel.setBounds(250,100,100,100);
-       JPasswordField pass = new JPasswordField(10);
-       pass.setBounds(350,140,150,25);
-       pass.setEchoChar('*');
-       change.add(passwordLabel);
-       change.add(pass);
-       pass.addActionListener(new ActionListener() {
-           @Override
-           public void actionPerformed(ActionEvent e) {
-               JPasswordField input = (JPasswordField) e.getSource();
-               char[] passy = input.getPassword();
-               String p = new String(passy);
+        passwordLabel = new JLabel("Enter Password:");
+        passwordLabel.setBounds(250,100,100,100);
+        JPasswordField pass = new JPasswordField(10);
+        pass.setBounds(350,140,150,25);
+        pass.setEchoChar('*');
+        change.add(passwordLabel);
+        change.add(pass);
+        pass.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JPasswordField input = (JPasswordField) e.getSource();
+                char[] passy = input.getPassword();
+                String p = new String(passy);
 
-               if(p.equals(password)){
-                   Quiz.addQuizQuestion();
-               }
+                if(p.equals(password)){
+                    QuizApp.addQuizQuestion();
+                }
 
-               else
-                   JOptionPane.showMessageDialog(null,"Incorrect Password");
-                    addQuestion();
+                else
+                    JOptionPane.showMessageDialog(null,"Incorrect Password");
+                addQuestion();
 
 
-           }//End of AP
-       });//End AL
+            }//End of AP
+        });//End AL
 
 
 
