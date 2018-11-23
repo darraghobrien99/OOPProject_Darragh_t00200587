@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public class Question {
 
 
@@ -40,17 +42,17 @@ public class Question {
 
     }
 
-    public String[] getAnswers() {
+    public String getAnswers() {
 
-        return answers;
+        return Arrays.toString(answers); //https://stackoverflow.com/questions/8410294/why-does-printlnarray-have-strange-output-ljava-lang-string3e25a5
 
     }
 
 
 
-    public int getCorrectAnswerIndex() {
+    public String getCorrectAnswerIndex() {
 
-        return correctAnswerIndex;
+        return answers[correctAnswerIndex];
 
     }
 
@@ -82,7 +84,6 @@ public class Question {
 
 
     public String toString(){
-//print out Array of correctAnswers
 
             return "Question: " + getQuestion() + "\nAnswers: " + getAnswers() +
 

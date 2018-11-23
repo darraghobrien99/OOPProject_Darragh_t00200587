@@ -1,5 +1,3 @@
-import jdk.nashorn.internal.scripts.JO;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -137,18 +135,15 @@ public class MainMenuGUI extends JFrame implements ActionListener {
         change.setBackground(Color.GRAY);
 
 
+
         //Added by JB - the call to the read() here will read the questions, answers and correct index from the file on disk
         //and put them into an arraylist of Question objects. Then the contents of this arraylist is just displayed to the screen
         //via a loop for test purposes
 
-
-
-
-
         for(Question q : quizQuestions)
             System.out.println(q);
 
-        QuestionFile.write(quizQuestions); //JB added test code to try to write arraylist of Question objects to file
+        //QuestionFile.write(quizQuestions); //JB added test code to try to write arraylist of Question objects to file
 
         quizQuestions = QuestionFile.read();
 
@@ -156,7 +151,7 @@ public class MainMenuGUI extends JFrame implements ActionListener {
             System.out.println(q);
 
 
-
+/*
 
         ArrayList<JLabel> questionLabels = new ArrayList<JLabel>(); //https://stackoverflow.com/questions/23369867/display-arraylist-items-as-separate-jlabels
 
@@ -172,7 +167,7 @@ public class MainMenuGUI extends JFrame implements ActionListener {
            change.add(questionLabels.get(i));
        }
 
-
+*/
 
 /*
         timer = new Timer(500, new ActionListener() {
@@ -185,30 +180,8 @@ public class MainMenuGUI extends JFrame implements ActionListener {
 
 */
 
-/*
-       QuizQuestion quizQuestion = new QuizQuestion();
-
-       for (Question q : quizQuestion.getQuizQuestions()) {
-           System.out.println(quizQuestion);
-       }
 
 
-       //create buttons for answers
-        buttons = new JButton[4];
-
-       //assign answer to buttons
-
-       //generate a random number to determine where correct goes
-       int index = (int)(Math.random() * 4);
-
-       //put the correct answer to the random button
-       buttons[index] = new JButton(correctAnswerIndex);
-
-       //fill other spot with answer
-      // for(int i=1; i<= .length; i++)
-       buttons[(index + i) %  answers.length] = new JButton(answers[i-1]);
-
-       */
         contain.add(change);
 
         // change.add(buttons[4]);
@@ -358,8 +331,37 @@ public class MainMenuGUI extends JFrame implements ActionListener {
         player.setName(JOptionPane.showInputDialog("Please enter your name:"));
         player.setUsername(JOptionPane.showInputDialog("Please enter your username"));
         player.setAge(Integer.parseInt(JOptionPane.showInputDialog("Please enter your age:")));
-        player.setGender(JOptionPane.showInputDialog("Please enter your gender:"));
         JOptionPane.showMessageDialog(null,"Lets Play " + player.getUsername());
+
+    }
+
+    private void questionsOnPanel(Question q){
+
+        question.setBounds(0,100,800,100);
+        question.setText(q.getQuestion());
+        change.add(question);
+
+        //create buttons for answers
+        buttons = new JButton[4];
+
+
+        //assign answer to buttons
+        for(int i=0; i<buttons.length-1;i++){
+            buttons[i].setBounds(0,300,400,100);
+
+            buttons[i].setText(q.getAnswers());
+            //generate a random number to determine where correct goes
+            int index = (int)(Math.random() * 4);
+            //put the correct answer to the random button
+            buttons[index] = new JButton(q.getCorrectAnswerIndex());
+            change.add(buttons[i]);
+        }
+
+
+
+
+        // for(int i=1; i<= .length; i++)
+       // buttons[(index + i) %  answers.length] = new JButton(answers[i-1]);
 
     }
 

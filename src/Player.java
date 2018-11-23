@@ -10,9 +10,9 @@ public class Player extends Person {
         return username;
     }
 
-    public Player(String name, int age, String gender, String username){
+    public Player(String name, int age,String username){
 
-        super(name,age,gender);
+        super(name,age);
         this.username = username;
     }
 
