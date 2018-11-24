@@ -14,5 +14,6 @@ public class QuizApp {
         mainGUI.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 
+
     }
 }//End Class

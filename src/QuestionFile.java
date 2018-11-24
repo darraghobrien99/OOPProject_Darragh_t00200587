@@ -173,10 +173,11 @@ public class QuestionFile {
                 writer.write(q.getQuestion());
                 writer.newLine();
 
-
-                writer.write(q.getAnswers());
-                writer.newLine();
-
+                for(int i=0;i<4;i++)
+                {
+                    writer.write(q.getAnswers()[i]);
+                    writer.newLine();
+                }
                 writer.write(String.valueOf(q.getCorrectAnswerIndex()));
                 writer.newLine();
             }

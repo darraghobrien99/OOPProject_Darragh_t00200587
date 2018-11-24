@@ -6,7 +6,7 @@ public class Question {
 
     private String question;
 
-    private String[] answers = new String[4];
+    private String[] answers;
 
     private int correctAnswerIndex;
 
@@ -42,9 +42,9 @@ public class Question {
 
     }
 
-    public String getAnswers() {
+    public String[] getAnswers() {
 
-        return Arrays.toString(answers); //https://stackoverflow.com/questions/8410294/why-does-printlnarray-have-strange-output-ljava-lang-string3e25a5
+        return answers;
 
     }
 
@@ -85,7 +85,7 @@ public class Question {
 
     public String toString(){
 
-            return "Question: " + getQuestion() + "\nAnswers: " + getAnswers() +
+            return "Question: " + getQuestion() + "\nAnswers: " + Arrays.toString(getAnswers()) +
 
                     "\nCorrect Answer Index: " + getCorrectAnswerIndex();
         }
