@@ -24,6 +24,7 @@ public class MainMenuGUI extends JFrame implements ActionListener {
     JLabel question = new JLabel();
     JLabel usernameLabel;
     JLabel passwordLabel;
+    JLabel scoreLabel;
     JButton[] buttons = new JButton[4];
     Timer timer = null;
     int seconds = 60;
@@ -35,6 +36,7 @@ public class MainMenuGUI extends JFrame implements ActionListener {
     private int correct;
     private String choice;
     private int score=0;
+    private boolean checkAnswer;
     JRadioButton[] rButtons = new JRadioButton[4];
     Scanner scanner = new Scanner(System.in);
 
@@ -149,6 +151,8 @@ public class MainMenuGUI extends JFrame implements ActionListener {
         for (Question q : quizQuestions) {
 
 
+
+
 /*
             System.out.println(q.getQuestion());
             System.out.println("A. " + q.getAnswers()[0]);
@@ -164,30 +168,49 @@ public class MainMenuGUI extends JFrame implements ActionListener {
 
 */
 
+            int num = 0;
+            if (num <=9) {
+                q = quizQuestions.get((int) num);
+                question.setText(q.getQuestion());
+                question.setBounds(160, -20, 800, 200);
+                question.setFont(new Font("Tahoma", Font.BOLD, 18));
+                question.setForeground(new Color(59, 89, 182));
+                num += 1;
+            }
 
-            double currentQ = Math.random() * 10;
-            q = quizQuestions.get((int)currentQ);
-            question.setText(q.getQuestion());
-            question.setBounds(160, -20, 800, 200);
-            question.setFont(new Font("Tahoma", Font.BOLD, 18));
-            question.setForeground(new Color(59, 89, 182));
+            else {
+                question.setText("End of Quiz");
+            }
 
-                for(int x=0; x<buttons.length;x++) {
-                    double z = Math.random() * 4;
-                    buttons[0] = new JButton(q.getAnswers()[(int) z]);    // Initialize method 1
-                    buttons[0].setBounds(100, 100, 300, 100);
-                    buttons[1] = new JButton(q.getAnswers()[(int) z]);
-                    buttons[1].setBounds(400, 100, 300, 100);
-                    buttons[2] = new JButton(q.getAnswers()[(int) z]);    // Initialize method 1
-                    buttons[2].setBounds(100, 300, 300, 100);
-                    buttons[3] = new JButton(q.getAnswers()[(int) z]);
-                    buttons[3].setBounds(400, 300, 300, 100);
-                }
-            change.add(buttons[0]);
-            change.add(buttons[1]);
-            change.add(buttons[2]);
-            change.add(buttons[3]);
+            String[] answers = new String[]{q.getAnswers()[0], q.getAnswers()[1], q.getAnswers()[2], q.getAnswers()[3]};
+            buttons[0] = new JButton(answers[0]);
+            buttons[0].setBounds(200,100,200,100);
+            buttons[1] = new JButton(answers[1]);
+            buttons[1].setBounds(400,100,200,100);
+            buttons[2] = new JButton(answers[2]);
+            buttons[2].setBounds(200,300,200,100);
+            buttons[3] = new JButton(answers[3]);
+            buttons[3].setBounds(400,300,200,100);
 
+            String correctAnswer = q.getCorrectAnswerIndex();
+
+           for(int x=0; x<buttons.length; x++){
+               buttons[x].addActionListener(new ActionListener() {
+                   @Override
+                   public void actionPerformed(ActionEvent e) {
+                       if (e.getSource() == buttons[0]){
+                           if (buttons[0].getText().equalsIgnoreCase(correctAnswer));
+                           score++;
+                       }
+
+
+                   }
+               });
+           }
+
+           scoreLabel = new JLabel("Score: " + score);
+           scoreLabel.setBounds(700,-30,100,100);
+           change.add(scoreLabel);
 
             nxtButton = new JButton("Next");
             nxtButton.setFocusPainted(false);
@@ -204,9 +227,10 @@ public class MainMenuGUI extends JFrame implements ActionListener {
                 }
             });
             change.add(nxtButton);
-
-
-
+            change.add(buttons[0]);
+            change.add(buttons[1]);
+            change.add(buttons[2]);
+            change.add(buttons[3]);
 
 
             // System.out.println(q);
