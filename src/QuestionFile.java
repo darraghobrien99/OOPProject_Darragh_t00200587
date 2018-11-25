@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Scanner;
 
 
-public class QuestionFile {
+public class QuestionFile  {
 
 
 

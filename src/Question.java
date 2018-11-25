@@ -1,5 +1,12 @@
 import java.util.Arrays;
 
+/**
+ * The Question  Class models a Quiz Question where each question has a
+ * question, 4 answers and the correct Answer
+ *
+ * @author Darragh O'Brien
+ */
+
 public class Question {
 
 
@@ -11,8 +18,10 @@ public class Question {
     private int correctAnswerIndex;
 
 
-
-
+    /**
+     *
+     * @param question sets the question
+     */
 
     public void setQuestion(String question) {
 
@@ -21,7 +30,10 @@ public class Question {
     }
 
 
-
+    /**
+     *
+     * @param answers sets the 4 answers for the question
+     */
     public void setAnswers(String[] answers) {
 
         this.answers = answers;
@@ -29,12 +41,20 @@ public class Question {
     }
 
 
-
+    /**
+     *
+     * @param correctAnswerIndex sets the Index of the correct answer
+     */
     public void setCorrectAnswerIndex(int correctAnswerIndex) {
 
         this.correctAnswerIndex = correctAnswerIndex;
 
     }
+
+    /**
+     *
+     * @return the question
+     */
 
     public String getQuestion() {
 
@@ -42,21 +62,27 @@ public class Question {
 
     }
 
+    /**
+     *
+     * @return the answers for the question
+     */
+
     public String[] getAnswers() {
 
         return answers;
 
     }
 
-
+    /**
+     *
+     * @return the correct answer index in the answer array
+     */
 
     public String getCorrectAnswerIndex() {
 
         return answers[correctAnswerIndex];
 
     }
-
-
 
     public Question(String question,String[] answers, int correctAnswerIndex){
 
@@ -79,7 +105,6 @@ public class Question {
         this.correctAnswerIndex = 0;
 
     }
-
 
 
 
