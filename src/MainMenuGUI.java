@@ -8,36 +8,35 @@ import javax.swing.Timer;
 
 public class MainMenuGUI extends JFrame implements ActionListener {
 
-    JButton playButton;
-    JButton scoresButton;
-    JButton exitButton;
-    JButton addQButton;
-    JButton EnterButton;
-    JButton backButton;
-    JButton nxtButton;
-    JPanel change = new JPanel(null);
-    Container contain;
-    JLabel heading;
-    JLabel question = new JLabel();
-    JLabel usernameLabel;
-    JLabel passwordLabel;
-    JLabel scoreLabel =  new JLabel("Score: 0");
-    JButton[] buttons = new JButton[4];
-    Timer timer = null;
-    int seconds = 60;
+    private JButton playButton;
+    private JButton scoresButton;
+    private JButton exitButton;
+    private  JButton addQButton;
+    private JButton EnterButton;
+    private JButton backButton;
+    private JButton nxtButton;
+    private JPanel change = new JPanel(null);
+    private Container contain;
+    private JLabel heading;
+    private JLabel question = new JLabel();
+    private JLabel usernameLabel;
+    private JLabel passwordLabel;
+    private JLabel scoreLabel = new JLabel("Score: 0");
+    private JButton[] buttons = new JButton[4];
+    private Timer timer = null;
+    private int seconds = 60;
     private static String username = "admin";
     private static String password = "master";
-    ArrayList<Question> quizQuestions = QuestionFile.read();
-    Question newQ = new Question();
-    Question q= new Question();
+    private ArrayList<Question> quizQuestions = QuestionFile.read();
+    private Question newQ = new Question();
+    private Question q = new Question();
     private int maxQuestions = 10;
     private int correct;
     private String choice;
-    private int score=0;
+    private int score = 0;
     int num = 0;
     private String correctAnswer;
-    private Random randomGenerator;
-    JRadioButton[] rButtons = new JRadioButton[4];
+
 
 
 
@@ -122,7 +121,7 @@ public class MainMenuGUI extends JFrame implements ActionListener {
             contain.removeAll();
             startQuiz();
         } else if (e.getSource() == scoresButton) {
-           showLeaderboard();
+            showLeaderboard();
         } else if (e.getSource() == addQButton) {
             contain = getContentPane();
             contain.removeAll();
@@ -149,87 +148,77 @@ public class MainMenuGUI extends JFrame implements ActionListener {
         //QuestionFile.write(quizQuestions); //JB added test code to try to write arraylist of Question objects to file
 
 
+        for (int i = 0; i < 9; i++) {
 
-                for(int i=0; i<9;i++) {
-                    q = quizQuestions.get(randomQuestion());
-                    question.setText(q.getQuestion());
-                    question.setBounds(100, -20, 800, 200);
-                    question.setFont(new Font("Tahoma", Font.BOLD, 15));
-                    question.setForeground(new Color(59, 89, 182));
+
+            q = quizQuestions.get(randomQuestion());
+            question.setText(q.getQuestion());
+            question.setBounds(100, -20, 800, 200);
+            question.setFont(new Font("Tahoma", Font.BOLD, 15));
+            question.setForeground(new Color(59, 89, 182));
               
 
-
-/*
-            else {
-                question.setText("End of Quiz");
-            }
-            */
-
-                    String[] answers = new String[]{q.getAnswers()[0], q.getAnswers()[1], q.getAnswers()[2], q.getAnswers()[3]};
-                    buttons[0] = new JButton(answers[0]);
-                    buttons[0].setBounds(200, 100, 200, 100);
-                    buttons[1] = new JButton(answers[1]);
-                    buttons[1].setBounds(400, 100, 200, 100);
-                    buttons[2] = new JButton(answers[2]);
-                    buttons[2].setBounds(200, 300, 200, 100);
-                    buttons[3] = new JButton(answers[3]);
-                    buttons[3].setBounds(400, 300, 200, 100);
+            String[] answers = new String[]{q.getAnswers()[0], q.getAnswers()[1], q.getAnswers()[2], q.getAnswers()[3]};
+            buttons[0] = new JButton(answers[0]);
+            buttons[0].setBounds(200, 100, 200, 100);
+            buttons[1] = new JButton(answers[1]);
+            buttons[1].setBounds(400, 100, 200, 100);
+            buttons[2] = new JButton(answers[2]);
+            buttons[2].setBounds(200, 300, 200, 100);
+            buttons[3] = new JButton(answers[3]);
+            buttons[3].setBounds(400, 300, 200, 100);
 
 
-                    scoreLabel.setBounds(700, -30, 100, 100);
-                    change.add(scoreLabel);
+            scoreLabel.setBounds(700, -30, 100, 100);
+            change.add(scoreLabel);
 
 
-                    correctAnswer = q.getCorrectAnswerIndex();
+            correctAnswer = q.getCorrectAnswerIndex();
 
 
-                    for (int x = 0; x < buttons.length; x++) {
-                        buttons[x].addActionListener(new ActionListener() {
-                            @Override
-                            public void actionPerformed(ActionEvent e) {
-                                System.out.println(e.getActionCommand());
-                                if (e.getActionCommand() == correctAnswer) {
-                                    youScoredRight();
-                                    JOptionPane.showMessageDialog(null, "Correct \n+1 has been added to your score\n Please Hit next");
+            for (int x = 0; x < buttons.length; x++) {
+                buttons[x].addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        System.out.println(e.getActionCommand());
+                        if (e.getActionCommand() == correctAnswer) {
+                            youScoredRight();
+                            JOptionPane.showMessageDialog(null, "Correct \n+1 has been added to your score\n Please Hit next");
 
-                                } else {
-                                    youScoredWrong();
-                                    JOptionPane.showMessageDialog(null, "Incorrect \n-1 has been subtracted from your score\n Please Hit next");
-                                }
-
-                            }
-                        });
-                    }
-
-
-                    nxtButton = new JButton("Next");
-                    nxtButton.setFocusPainted(false);
-                    nxtButton.setForeground(Color.WHITE);
-                    nxtButton.setBackground(new Color(59, 89, 182));
-                    nxtButton.setFont(new Font("Tahoma", Font.BOLD, 12));
-                    nxtButton.setBounds(550, 470, 200, 40);
-                    nxtButton.addActionListener(e -> {
-                        if (e.getSource() == nxtButton) {
-                            contain = getContentPane();
-                            contain.removeAll();
-                            num++;
-                            nextQuestion();
+                        } else {
+                            youScoredWrong();
+                            JOptionPane.showMessageDialog(null, "Incorrect \n-1 has been subtracted from your score\n Please Hit next");
                         }
-                    });
-                }
 
-                JOptionPane.showMessageDialog(null, "End of Quiz\n" +
-                        "You got " + score + "correct");
-            change.add(nxtButton);
-            change.add(buttons[0]);
-            change.add(buttons[1]);
-            change.add(buttons[2]);
-            change.add(buttons[3]);
+                    }
+                });
+            }
+
+
+            nxtButton = new JButton("Next");
+            nxtButton.setFocusPainted(false);
+            nxtButton.setForeground(Color.WHITE);
+            nxtButton.setBackground(new Color(59, 89, 182));
+            nxtButton.setFont(new Font("Tahoma", Font.BOLD, 12));
+            nxtButton.setBounds(550, 470, 200, 40);
+            nxtButton.addActionListener(e -> {
+                if (e.getSource() == nxtButton) {
+                    contain = getContentPane();
+                    contain.removeAll();
+                    num++;
+                    nextQuestion();
+                }
+            });
+        }
+
+        change.add(nxtButton);
+        change.add(buttons[0]);
+        change.add(buttons[1]);
+        change.add(buttons[2]);
+        change.add(buttons[3]);
 
 
         change.add(question);
-
-
 
 
         contain.add(change);
@@ -240,7 +229,7 @@ public class MainMenuGUI extends JFrame implements ActionListener {
     }
 
 
-    private  void showLeaderboard() {
+    private void showLeaderboard() {
 
     }
 
@@ -354,7 +343,7 @@ public class MainMenuGUI extends JFrame implements ActionListener {
 
         addQ.setCorrectAnswerIndex(Integer.parseInt(JOptionPane.showInputDialog("Enter correct Answer Index:")));
         quizQuestions.add(addQ);
-         QuestionFile.write(quizQuestions);
+        QuestionFile.write(quizQuestions);
 
 
     }//End Method
@@ -376,76 +365,81 @@ public class MainMenuGUI extends JFrame implements ActionListener {
 
     }
 
-    private void youScoredRight(){
+    private void youScoredRight() {
         score++;
         scoreLabel.setText("Score: " + score);
     }
 
-private void youScoredWrong() {
+    private void youScoredWrong() {
         score--;
         scoreLabel.setText("Score " + score);
-}
-
-private void nextQuestion(){
-
-    q = quizQuestions.get(randomQuestion());
-    question.setText(q.getQuestion());
-    question.setBounds(160, -20, 800, 200);
-    question.setFont(new Font("Tahoma", Font.BOLD, 15));
-    question.setForeground(new Color(59, 89, 182));
-
-    
-
-    String[] answers = new String[]{q.getAnswers()[0], q.getAnswers()[1], q.getAnswers()[2], q.getAnswers()[3]};
-    buttons[0] = new JButton(answers[0]);
-    buttons[0].setBounds(200,100,200,100);
-    buttons[1] = new JButton(answers[1]);
-    buttons[1].setBounds(400,100,200,100);
-    buttons[2] = new JButton(answers[2]);
-    buttons[2].setBounds(200,300,200,100);
-    buttons[3] = new JButton(answers[3]);
-    buttons[3].setBounds(400,300,200,100);
-
-
-    scoreLabel.setBounds(700,-30,100,100);
-    change.add(scoreLabel);
-
-
-    correctAnswer = q.getCorrectAnswerIndex();
-
-
-    for(int x=0; x<buttons.length; x++){
-        buttons[x].addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                System.out.println(e.getActionCommand());
-                if(e.getActionCommand() == correctAnswer){
-                    youScoredRight();
-                    JOptionPane.showMessageDialog(null, "Correct \n+1 has been added to your score\n Please Hit next");
-
-                }
-
-                else{
-                    youScoredWrong();
-                    JOptionPane.showMessageDialog(null, "Incorrect \n-1 has been subtracted from your score\n Please Hit next");
-                }
-
-            }
-        });
     }
 
+    private void nextQuestion() {
+
+        change = new JPanel(null);
+        change.setBounds(0, 0, 800, 800);
+        change.setBackground(Color.GRAY);
+
+        contain.add(change);
+        change.invalidate();
+        change.repaint();
+
+        q = quizQuestions.get(randomQuestion());
+        question.setText(q.getQuestion());
+        question.setBounds(160, -20, 800, 200);
+        question.setFont(new Font("Tahoma", Font.BOLD, 15));
+        question.setForeground(new Color(59, 89, 182));
+
+        change.add(question);
 
 
-}
+        String[] answers = new String[]{q.getAnswers()[0], q.getAnswers()[1], q.getAnswers()[2], q.getAnswers()[3]};
+        buttons[0] = new JButton(answers[0]);
+        buttons[0].setBounds(200, 100, 200, 100);
+        buttons[1] = new JButton(answers[1]);
+        buttons[1].setBounds(400, 100, 200, 100);
+        buttons[2] = new JButton(answers[2]);
+        buttons[2].setBounds(200, 300, 200, 100);
+        buttons[3] = new JButton(answers[3]);
+        buttons[3].setBounds(400, 300, 200, 100);
+
+        change.add(nxtButton);
+        change.add(buttons[0]);
+        change.add(buttons[1]);
+        change.add(buttons[2]);
+        change.add(buttons[3]);
 
 
-    private void questionsOnPanel(Question q) {
+
+        scoreLabel.setBounds(700, -30, 100, 100);
+        change.add(scoreLabel);
 
 
+        correctAnswer = q.getCorrectAnswerIndex();
+
+
+        for (int x = 0; x < buttons.length; x++) {
+            buttons[x].addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    System.out.println(e.getActionCommand());
+                    if (e.getActionCommand() == correctAnswer) {
+                        youScoredRight();
+                        JOptionPane.showMessageDialog(null, "Correct \n+1 has been added to your score\n Please Hit next");
+
+                    } else {
+                        youScoredWrong();
+                        JOptionPane.showMessageDialog(null, "Incorrect \n-1 has been subtracted from your score\n Please Hit next");
+                    }
+
+                }
+            });
         }
 
 
     }
+}
 
 
 
