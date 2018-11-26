@@ -23,16 +23,11 @@ public class MainMenuGUI extends JFrame implements ActionListener {
     private JLabel passwordLabel;
     private JLabel scoreLabel = new JLabel("Score: 0");
     private JButton[] buttons = new JButton[4];
-    private Timer timer = null;
-    private int seconds = 60;
     private static String username = "admin";
     private static String password = "master";
     private ArrayList<Question> quizQuestions = QuestionFile.read();
     private Question newQ = new Question();
     private Question q = new Question();
-    private int maxQuestions = 10;
-    private int correct;
-    private String choice;
     private int score = 0;
     int num = 0;
     private String correctAnswer;
@@ -112,9 +107,9 @@ public class MainMenuGUI extends JFrame implements ActionListener {
         exitButton.addActionListener(this);
 
         setVisible(true);
-    }
+    }//End MainMenuGUI
 
-
+//Action Performed
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == playButton) {
             contain = getContentPane();
@@ -131,9 +126,11 @@ public class MainMenuGUI extends JFrame implements ActionListener {
 
     } //end of action Performed
 
+    //Start Quiz Method
+
     private void startQuiz() {
 
-        // playerDetails();
+         playerDetails(); //Asks for player Details
 
         change = new JPanel(null);
         change.setBounds(0, 0, 800, 800);
@@ -144,21 +141,19 @@ public class MainMenuGUI extends JFrame implements ActionListener {
         //and put them into an arraylist of Question objects. Then the contents of this arraylist is just displayed to the screen
         //via a loop for test purposes
 
-        quizQuestions = QuestionFile.read();
+        quizQuestions = QuestionFile.read(); //read file
         //QuestionFile.write(quizQuestions); //JB added test code to try to write arraylist of Question objects to file
 
-
-        for (int i = 0; i < 9; i++) {
-
-
+        
+            //Assign question to label
             q = quizQuestions.get(randomQuestion());
             question.setText(q.getQuestion());
-            question.setBounds(-40, -20, 800, 200);
+            question.setBounds(-60, -20, 800, 200);
             question.setHorizontalAlignment(0);
             question.setFont(new Font("Tahoma", Font.BOLD, 14));
             question.setForeground(new Color(59, 89, 182));
 
-
+            //Assign answers to buttons
             String[] answers = new String[]{q.getAnswers()[0], q.getAnswers()[1], q.getAnswers()[2], q.getAnswers()[3]};
             buttons[0] = new JButton(answers[0]);
             buttons[0].setBounds(200, 100, 200, 100);
@@ -169,14 +164,15 @@ public class MainMenuGUI extends JFrame implements ActionListener {
             buttons[3] = new JButton(answers[3]);
             buttons[3].setBounds(400, 300, 200, 100);
 
-
+            //Score Label
             scoreLabel.setBounds(700, -30, 100, 100);
             change.add(scoreLabel);
 
-
+            //get Correct Answer from question
             correctAnswer = q.getCorrectAnswerIndex();
 
 
+            //Message displayed showing if correct or wrong
             for (int x = 0; x < buttons.length; x++) {
                 buttons[x].addActionListener(new ActionListener() {
                     @Override
@@ -189,13 +185,14 @@ public class MainMenuGUI extends JFrame implements ActionListener {
                         } else {
                             youScoredWrong();
                             JOptionPane.showMessageDialog(null, "Incorrect \n-1 has been subtracted from your score\n Please Hit next");
-                        }
+                        } //end Else
 
-                    }
+                    } //End of AE
                 });
-            }
+            }//End of for
 
 
+            //Next Question Button
             nxtButton = new JButton("Next");
             nxtButton.setFocusPainted(false);
             nxtButton.setForeground(Color.WHITE);
@@ -204,32 +201,35 @@ public class MainMenuGUI extends JFrame implements ActionListener {
             nxtButton.setBounds(550, 470, 200, 40);
             nxtButton.addActionListener(e -> {
                 if (e.getSource() == nxtButton) {
+
                     contain = getContentPane();
                     contain.removeAll();
                     num++;
                     nextQuestion();
                 }
             });
-        }
 
-        change.add(nxtButton);
-        change.add(buttons[0]);
-        change.add(buttons[1]);
-        change.add(buttons[2]);
-        change.add(buttons[3]);
-
-
-        change.add(question);
+            //Add buttons to jpanel
+            change.add(nxtButton);
+            change.add(buttons[0]);
+            change.add(buttons[1]);
+            change.add(buttons[2]);
+            change.add(buttons[3]);
 
 
-        contain.add(change);
-        change.invalidate();
-        change.repaint();
+            change.add(question);
+
+
+
+            //Repaint panel
+            contain.add(change);
+            change.invalidate();
+            change.repaint();
 
 
     }
 
-
+    //show Leader board method
     private void showLeaderboard() {
 
     }
@@ -246,13 +246,14 @@ public class MainMenuGUI extends JFrame implements ActionListener {
         change.invalidate();
         change.repaint();
 
+        //heading label
         heading = new JLabel("Enter Username & Password, Quiz Master");
         heading.setForeground(new Color(59, 89, 182));
         heading.setFont(new Font("Tahoma", Font.BOLD, 25));
         heading.setBounds(150, -50, 900, 200);
         change.add(heading);
 
-
+        //Enter Button
         EnterButton = new JButton("Enter");
         EnterButton.setFocusPainted(false);
         EnterButton.setForeground(Color.WHITE);
@@ -261,6 +262,7 @@ public class MainMenuGUI extends JFrame implements ActionListener {
         EnterButton.setBounds(400, 200, 100, 50);
         change.add(EnterButton);
 
+        //Back Button
         backButton = new JButton("Go Back");
         backButton.setFocusPainted(false);
         backButton.setForeground(Color.WHITE);
@@ -278,7 +280,7 @@ public class MainMenuGUI extends JFrame implements ActionListener {
         });
         change.add(backButton);
 
-
+        //username label
         usernameLabel = new JLabel("Enter Username:");
         usernameLabel.setBounds(250, 50, 100, 100);
         JTextField admin = new JTextField(10);
@@ -287,6 +289,7 @@ public class MainMenuGUI extends JFrame implements ActionListener {
         change.add(usernameLabel);
         change.add(admin);
 
+        //password Label
         passwordLabel = new JLabel("Enter Password:");
         passwordLabel.setBounds(250, 100, 100, 100);
         JPasswordField pass = new JPasswordField(10);
@@ -315,13 +318,14 @@ public class MainMenuGUI extends JFrame implements ActionListener {
     }//End Method
 
 
+    //Exit Quiz
     private static void exitQuiz() {
 
         JOptionPane.showMessageDialog(null, "Thank you for playing! Goodbye!");
         System.exit(0);
     }
 
-    //AddQuizQuestion Method
+    //Add Quiz Question Method
 
     private void addQuizQuestion() {
 
@@ -344,38 +348,44 @@ public class MainMenuGUI extends JFrame implements ActionListener {
 
         addQ.setCorrectAnswerIndex(Integer.parseInt(JOptionPane.showInputDialog("Enter correct Answer Index:")));
         quizQuestions.add(addQ);
-        QuestionFile.write(quizQuestions);
+        //QuestionFile.write(quizQuestions);
 
 
     }//End Method
 
-
+    //Provides random question
     private int randomQuestion() {
         Random random = new Random();
         int value = random.nextInt(quizQuestions.size());
         return value;
     }//End Method
 
+        //player details
     private void playerDetails() {
 
         Player player = new Player();
         player.setName(JOptionPane.showInputDialog("Please enter your name:"));
         player.setUsername(JOptionPane.showInputDialog("Please enter your username"));
         player.setAge(Integer.parseInt(JOptionPane.showInputDialog("Please enter your age:")));
+
         JOptionPane.showMessageDialog(null, "Lets Play " + player.getUsername());
 
     }
 
+    //score increases
     private void youScoredRight() {
         score++;
         scoreLabel.setText("Score: " + score);
     }
 
+    //score decreases
     private void youScoredWrong() {
         score--;
         scoreLabel.setText("Score " + score);
     }
 
+
+    //next question panel
     private void nextQuestion() {
 
         change = new JPanel(null);
@@ -388,8 +398,8 @@ public class MainMenuGUI extends JFrame implements ActionListener {
 
         q = quizQuestions.get(randomQuestion());
         question.setText(q.getQuestion());
-        question.setBounds(160, -20, 800, 200);
-        question.setFont(new Font("Tahoma", Font.BOLD, 15));
+        question.setBounds(-30, -20, 800, 200);
+        question.setFont(new Font("Tahoma", Font.BOLD, 14));
         question.setForeground(new Color(59, 89, 182));
 
         change.add(question);
@@ -439,8 +449,8 @@ public class MainMenuGUI extends JFrame implements ActionListener {
         }
 
 
-    }
-}
+    }//End method
+}//End of class
 
 
 

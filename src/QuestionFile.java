@@ -54,7 +54,9 @@ public class QuestionFile  {
 
 
 
-                String sCurrentLine = sc.nextLine();
+                String sCurrentLine = sc.nextLine(); //finds current line
+
+
 
                 //Find Question
 
@@ -153,7 +155,7 @@ public class QuestionFile  {
 
         return quizQuestions;
 
-    }//End of QuizQuestion
+    } //End read()
 
 
     //Modified by JB to make the class more readable and functional
@@ -192,7 +194,7 @@ public class QuestionFile  {
             e.printStackTrace();
         }
 
-    }//End Method
+    }//End write()
 
 
 }//End class
