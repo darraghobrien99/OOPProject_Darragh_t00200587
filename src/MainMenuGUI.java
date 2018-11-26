@@ -153,10 +153,11 @@ public class MainMenuGUI extends JFrame implements ActionListener {
 
             q = quizQuestions.get(randomQuestion());
             question.setText(q.getQuestion());
-            question.setBounds(100, -20, 800, 200);
-            question.setFont(new Font("Tahoma", Font.BOLD, 15));
+            question.setBounds(-40, -20, 800, 200);
+            question.setHorizontalAlignment(0);
+            question.setFont(new Font("Tahoma", Font.BOLD, 14));
             question.setForeground(new Color(59, 89, 182));
-              
+
 
             String[] answers = new String[]{q.getAnswers()[0], q.getAnswers()[1], q.getAnswers()[2], q.getAnswers()[3]};
             buttons[0] = new JButton(answers[0]);
